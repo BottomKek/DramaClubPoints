@@ -19,4 +19,9 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(this, SubmitPointsActivity.class);
         startActivity(intent);
     }
+
+    public void goHistoryButton(View v){
+        Intent intent = new Intent(this, ViewHistoryActivity.class);
+        startActivity(intent);
+    }
 }

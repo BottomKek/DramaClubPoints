@@ -33,6 +33,10 @@ public class SubmitPointsActivity extends AppCompatActivity {
         Intent intent = new Intent(this, MainActivity.class);
         startActivity(intent);
     }
+    public void goHistoryButton(View v){
+        Intent intent = new Intent(this, ViewHistoryActivity.class);
+        startActivity(intent);
+    }
 
     public void onRadioButtonClicked(View v){
         TextView yes = (TextView) findViewById(R.id.problemSolver);
