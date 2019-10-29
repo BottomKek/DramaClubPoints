@@ -63,7 +63,7 @@ public class RegisterActivity extends AppCompatActivity {
                             @Override
                             public void onComplete(@NonNull Task<AuthResult> task) {
                                 if (task.isSuccessful()) {
-                                    startActivity(new Intent(getApplicationContext(), MainActivity.class));
+                                    startActivity(new Intent(getApplicationContext(), RegisterInfo.class));
                                     finish();
                                 } else {
                                     Toast.makeText(getApplicationContext(), "E-mail or password is wrong", Toast.LENGTH_SHORT).show();
@@ -78,12 +78,13 @@ public class RegisterActivity extends AppCompatActivity {
             public void onClick(View v) {
                 String emailStr = email.getText().toString();
                 String passwordStr = password.getText().toString();
-                //test email: test@gmail.com, pw: testpw
+                //test login: test@gmail.com, password: testpw
                 firebaseAuth.signInWithEmailAndPassword(emailStr, passwordStr).addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
-                            Toast.makeText(getApplicationContext(),"login successful",Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getApplicationContext(),"Login successful",Toast.LENGTH_SHORT).show();
+
                             startActivity(new Intent(getApplicationContext(), MainActivity.class));
                             finish();
                         }
