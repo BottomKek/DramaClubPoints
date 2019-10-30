@@ -7,15 +7,16 @@ public class PointSubmission {
     private String time;
     private String firstName, lastName;
     private String nameOfProduction;
-    private String role;
+    private double points;
     private String memes;
 
-    public PointSubmission(String time, String firstName, String lastName, String prod, String role, String memes){
+    public PointSubmission(String time, String firstName, String lastName, String prod, double points, String memes){
         this.time = time;
         this.firstName = firstName;
         this.lastName = lastName;
         this.nameOfProduction = prod;
-        this.role = role;
+        this.points = points;
+        this.memes = memes;
     }
 
     public String getTime() {
@@ -50,12 +51,12 @@ public class PointSubmission {
         this.nameOfProduction = nameOfProduction;
     }
 
-    public String getRole() {
-        return role;
+    public double getPoints() {
+        return points;
     }
 
-    public void setRole(String role) {
-        this.role = role;
+    public void setPoints(int points) {
+        this.points = points;
     }
 
     public String getMemes() {

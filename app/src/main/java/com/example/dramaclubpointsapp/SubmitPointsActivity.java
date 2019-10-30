@@ -67,24 +67,54 @@ public class SubmitPointsActivity extends AppCompatActivity {
 
     }
     public void submitPoints(View v){
-        DatabaseHelper databaseHelper = new DatabaseHelper(this);
+        DatabaseHelper databaseHelper = new DatabaseHelper(this, null, null, 1);
 
         EditText first = (EditText) findViewById(R.id.editText);
         EditText last = (EditText) findViewById(R.id.editText2);
         EditText productionName = (EditText) findViewById(R.id.editText3);
         EditText companyName = (EditText) findViewById(R.id.editText4);
-        TextView getGrade = (TextView) findViewById(R.id.problemSolver);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         EditText meme = (EditText) findViewById(R.id.editText6);
+        Date currentTime = Calendar.getInstance().getTime();
+        String role = spinner.getSelectedItem().toString();
 
         String firstName = first.getText().toString();
         String lastName = last.getText().toString();
-        String grade = getGrade.getText().toString();
-        String role = spinner.getSelectedItem().toString();
-        Date currentTime = Calendar.getInstance().getTime();
         String time = currentTime.toString();
         String prod = productionName.getText().toString();
         String memes = meme.getText().toString();
+        double points;
+
+        if (role.equals("Major Role - 8") || role.equals("Stage Manager - 8") || role.equals("Student Assistant - 8")){
+            points = 8;
+        }
+        else if (role.equals("Crew Head - 6")){
+            points = 6;
+        }
+        else if (role.equals("Supporting Role - 5")){
+            points = 5;
+        }
+        else if(role.equals("Dance Captain - 4") || role.equals("Ensemble for GI - 4")){
+            points = 4;
+        }
+        else if(role.equals("Chorus/Walk On - 3") || role.equals("Set Crew - 3") || role.equals("Props Crew - 3") || role.equals("Tech Crew - 3") || role.equals("Costumes/Make Up Crew - 3") || role.equals("Musician/Pit Orchestra - 3") || role.equals("Showchoir - 3") || role.equals("Theatre Fest - 3")){
+            points = 3;
+        }
+        else if (role.equals("Running Crew - 2") || role.equals("Publicity Crew - 2")){
+            points = 2;
+        }
+        else if(role.equals("Hang and Focus - 1") || role.equals("Variety Show Performer (besides Showchoir) - 1")){
+            points = 1;
+        }
+        else if(role.equals("Let The Stars Come Out - 0.5")){
+            points = 0.5;
+        }
+        else if(role.equals("Audience - 0.25")){
+            points = 0.25;
+        }
+        else {
+            points = 0;
+        }
 
         if (first.getText().toString().equals("") || last.getText().toString().equals("") || spinner.getSelectedItem().toString().equals("Role in Production:")){
 
@@ -97,13 +127,9 @@ public class SubmitPointsActivity extends AppCompatActivity {
             productionName.setText("");
             companyName.setText("");
 
-
-
-
-
-
-            databaseHelper.addData(time,firstName, lastName, grade, prod, memes);
-
+            PointSubmission sub = new PointSubmission(time,firstName, lastName, prod, points, memes);
+            databaseHelper.addSubmission(sub);
+            /*
             String sent = firstName + " " + lastName + ", " + grade + ", " + role + ".";
             Intent intent = new Intent(Intent.ACTION_SEND);
             intent.setType("text/plain");
@@ -111,7 +137,7 @@ public class SubmitPointsActivity extends AppCompatActivity {
             String chooserTitle = "Choose an app to send your message";
             Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
             startActivity(chosenIntent);
-
+             */
 
         }
 
