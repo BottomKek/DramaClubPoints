@@ -1,5 +1,7 @@
 package com.example.dramaclubpointsapp;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
@@ -13,10 +15,17 @@ import android.widget.Toast;
 
 import org.w3c.dom.Text;
 
+import java.text.DateFormat;
+import java.text.FieldPosition;
+import java.text.ParsePosition;
+import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Date;
 
 public class SubmitPointsActivity extends AppCompatActivity {
+
+    private Calendar calendar;
+    private SimpleDateFormat dateFormat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -69,18 +78,22 @@ public class SubmitPointsActivity extends AppCompatActivity {
     public void submitPoints(View v){
         DatabaseHelper databaseHelper = new DatabaseHelper(this, null, null, 1);
 
+
         EditText first = (EditText) findViewById(R.id.editText);
         EditText last = (EditText) findViewById(R.id.editText2);
         EditText productionName = (EditText) findViewById(R.id.editText3);
         EditText companyName = (EditText) findViewById(R.id.editText4);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         EditText meme = (EditText) findViewById(R.id.editText6);
-        Date currentTime = Calendar.getInstance().getTime();
+        //Date currentTime = Calendar.getInstance().getTime();
+        calendar = Calendar.getInstance();
+        dateFormat = new SimpleDateFormat("MM/dd/yyyy");
         String role = spinner.getSelectedItem().toString();
 
         String firstName = first.getText().toString();
         String lastName = last.getText().toString();
-        String time = currentTime.toString();
+        //String time = (currentTime.toString());
+        String time = dateFormat.format(calendar.getTime());
         String prod = productionName.getText().toString();
         String memes = meme.getText().toString();
         double points;
@@ -129,15 +142,7 @@ public class SubmitPointsActivity extends AppCompatActivity {
 
             PointSubmission sub = new PointSubmission(time,firstName, lastName, prod, points, memes);
             databaseHelper.addSubmission(sub);
-            /*
-            String sent = firstName + " " + lastName + ", " + grade + ", " + role + ".";
-            Intent intent = new Intent(Intent.ACTION_SEND);
-            intent.setType("text/plain");
-            intent.putExtra(Intent.EXTRA_TEXT, sent);
-            String chooserTitle = "Choose an app to send your message";
-            Intent chosenIntent = Intent.createChooser(intent, chooserTitle);
-            startActivity(chosenIntent);
-             */
+
 
         }
 

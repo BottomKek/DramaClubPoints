@@ -97,19 +97,21 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         c.moveToFirst();
         while(!c.isAfterLast()) {
             if(c.getString(c.getColumnIndex(COLUMN_TIME_STAMP)) != null ) {
-                dbstring += c.getString(c.getColumnIndex(COLUMN_TIME_STAMP)) + "\t";
+                dbstring += c.getString(c.getColumnIndex(COLUMN_TIME_STAMP)) + "        ";
                 dbstring += c.getString(c.getColumnIndex(COLUMN_LAST_NAME)) + ", ";
-                dbstring += c.getString(c.getColumnIndex(COLUMN_FIRST_NAME)) + "\t";
+                dbstring += c.getString(c.getColumnIndex(COLUMN_FIRST_NAME)) + "        ";
                 //dbstring += c.getString(c.getColumnIndex(COLUMN_PRODUCTION)) + ", ";
-                dbstring += c.getString(c.getColumnIndex(COLUMN_POINTS));
+                dbstring += c.getString(c.getColumnIndex(COLUMN_POINTS)) + " points";
                 //dbstring += c.getString(c.getColumnIndex(COLUMN_MEMES));
                 dbstring += "\n";
             }
             c.moveToNext();
         }
 
+
         db.close();
         return dbstring;
 
     }
+
 }

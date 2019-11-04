@@ -39,4 +39,5 @@ public class ViewHistoryActivity extends AppCompatActivity {
         String dbString = databaseHelper.databasetoString();
         displayTextView.setText(dbString);
     }
+
 }
