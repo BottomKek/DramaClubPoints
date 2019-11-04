@@ -76,7 +76,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
         SQLiteDatabase db = getWritableDatabase();
         long result = db.insert(TABLE_SCORES, null, values);  // inserts these values into this table
 
-        Log.d(TAG, "Tried to insert score, result was " + result);
+
 
         db.close();             // need to close the database when we are done modifying it.
     }
@@ -100,9 +100,7 @@ public class DatabaseHelper extends SQLiteOpenHelper {
                 dbstring += c.getString(c.getColumnIndex(COLUMN_TIME_STAMP)) + "        ";
                 dbstring += c.getString(c.getColumnIndex(COLUMN_LAST_NAME)) + ", ";
                 dbstring += c.getString(c.getColumnIndex(COLUMN_FIRST_NAME)) + "        ";
-                //dbstring += c.getString(c.getColumnIndex(COLUMN_PRODUCTION)) + ", ";
                 dbstring += c.getString(c.getColumnIndex(COLUMN_POINTS)) + " points";
-                //dbstring += c.getString(c.getColumnIndex(COLUMN_MEMES));
                 dbstring += "\n";
             }
             c.moveToNext();
@@ -115,3 +113,10 @@ public class DatabaseHelper extends SQLiteOpenHelper {
     }
 
 }
+
+
+
+
+
+
+

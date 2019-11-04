@@ -85,14 +85,15 @@ public class SubmitPointsActivity extends AppCompatActivity {
         EditText companyName = (EditText) findViewById(R.id.editText4);
         Spinner spinner = (Spinner) findViewById(R.id.spinner);
         EditText meme = (EditText) findViewById(R.id.editText6);
-        //Date currentTime = Calendar.getInstance().getTime();
+        EditText report = (EditText) findViewById(R.id.editText5);
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-        String role = spinner.getSelectedItem().toString();
 
+
+
+        String role = spinner.getSelectedItem().toString();
         String firstName = first.getText().toString();
         String lastName = last.getText().toString();
-        //String time = (currentTime.toString());
         String time = dateFormat.format(calendar.getTime());
         String prod = productionName.getText().toString();
         String memes = meme.getText().toString();
@@ -129,7 +130,7 @@ public class SubmitPointsActivity extends AppCompatActivity {
             points = 0;
         }
 
-        if (first.getText().toString().equals("") || last.getText().toString().equals("") || spinner.getSelectedItem().toString().equals("Role in Production:")){
+        if (first.getText().toString().equals("") || last.getText().toString().equals("") || spinner.getSelectedItem().toString().equals("Role in Production:") || meme.getText().toString().equals("")){
 
             Toast toast = Toast.makeText(SubmitPointsActivity.this, "Please fill in all fields.", Toast.LENGTH_LONG);
             toast.show();
@@ -139,9 +140,15 @@ public class SubmitPointsActivity extends AppCompatActivity {
             last.setText("");
             productionName.setText("");
             companyName.setText("");
+            report.setText("");
+            meme.setText("");
+
+            Toast toast = Toast.makeText(SubmitPointsActivity.this, "Submission Successful!!", Toast.LENGTH_LONG);
+            toast.show();
 
             PointSubmission sub = new PointSubmission(time,firstName, lastName, prod, points, memes);
             databaseHelper.addSubmission(sub);
+
 
 
         }
