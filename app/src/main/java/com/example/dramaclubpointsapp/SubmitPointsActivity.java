@@ -13,6 +13,14 @@ import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
+
 import org.w3c.dom.Text;
 
 import java.text.DateFormat;
@@ -27,13 +35,28 @@ public class SubmitPointsActivity extends AppCompatActivity {
     private Calendar calendar;
     private SimpleDateFormat dateFormat;
 
+    FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
+    private String uid = fUser.getUid();
+    private double currentPoints;
+
+    DatabaseReference mDatabase;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_submit_points);
 
-
-
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
+            @Override
+            public void onDataChange(DataSnapshot dataSnapshot) {
+                User testuser = dataSnapshot.getValue(User.class);
+                currentPoints=testuser.getPoints();
+            }
+            @Override
+            public void onCancelled(DatabaseError databaseError) {
+            }
+        });
 
     }
 
@@ -149,10 +172,15 @@ public class SubmitPointsActivity extends AppCompatActivity {
             PointSubmission sub = new PointSubmission(time,firstName, lastName, prod, points, memes);
             databaseHelper.addSubmission(sub);
 
+            //double newPoints = currentPoints+points;
+            //Toast.makeText(getApplicationContext(),"old points: " + currentPoints,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"points to be added: " + points,Toast.LENGTH_SHORT).show();
+            //Toast.makeText(getApplicationContext(),"points: " + newPoints,Toast.LENGTH_SHORT).show();
+            //toast.show();
 
+            mDatabase.child("users").child(uid).child("points").setValue(currentPoints+points);
 
         }
-
 
     }
 }
