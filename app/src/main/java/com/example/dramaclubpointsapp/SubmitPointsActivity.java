@@ -101,7 +101,6 @@ public class SubmitPointsActivity extends AppCompatActivity {
     public void submitPoints(View v){
         DatabaseHelper databaseHelper = new DatabaseHelper(this, null, null, 1);
 
-
         EditText first = (EditText) findViewById(R.id.editText);
         EditText last = (EditText) findViewById(R.id.editText2);
         EditText productionName = (EditText) findViewById(R.id.editText3);
@@ -111,8 +110,6 @@ public class SubmitPointsActivity extends AppCompatActivity {
         EditText report = (EditText) findViewById(R.id.editText5);
         calendar = Calendar.getInstance();
         dateFormat = new SimpleDateFormat("MM/dd/yyyy");
-
-
 
         String role = spinner.getSelectedItem().toString();
         String firstName = first.getText().toString();

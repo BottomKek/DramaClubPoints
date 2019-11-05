@@ -28,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
     private double userpoints = 0;
 
     DatabaseReference userRef, rootRef;
-
+    //0-10 unranked, 10-70 thespian, 70-120 honors thespian,120-180 national honors thespian , 180+ international honors
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
