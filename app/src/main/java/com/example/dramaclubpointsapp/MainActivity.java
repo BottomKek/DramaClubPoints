@@ -25,27 +25,25 @@ public class MainActivity extends AppCompatActivity {
 
     FirebaseUser fUser = FirebaseAuth.getInstance().getCurrentUser();
     private String uid = fUser.getUid();
-    private double userpoints = 0;
+    private double currentPoints;
 
-    DatabaseReference userRef, rootRef;
+    DatabaseReference mDatabase;
+
     //0-10 unranked, 10-70 thespian, 70-120 honors thespian,120-180 national honors thespian , 180+ international honors
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
-        String name = user.getDisplayName();
+        final TextView pointstv = (TextView) findViewById(R.id.textView7);
 
-        TextView username = (TextView) findViewById(R.id.textView2);
-        username.setText(name);
-
-        DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
             @Override
             public void onDataChange(DataSnapshot dataSnapshot) {
                 User testuser = dataSnapshot.getValue(User.class);
-                userpoints = testuser.getPoints();
+                currentPoints = testuser.getPoints();
+                pointstv.setText("Total Points: " + currentPoints +" points");
             }
 
             @Override
@@ -53,8 +51,10 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        TextView pointstv = (TextView) findViewById(R.id.textView7);
-        pointstv.setText("Total Points: " + userpoints +" points");
+        String name = fUser.getDisplayName();
+
+        TextView username = (TextView) findViewById(R.id.textView2);
+        username.setText(name);
 
     }
 

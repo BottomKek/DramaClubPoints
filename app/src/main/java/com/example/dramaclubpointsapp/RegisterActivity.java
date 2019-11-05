@@ -66,7 +66,7 @@ public class RegisterActivity extends AppCompatActivity {
                                     startActivity(new Intent(getApplicationContext(), RegisterInfo.class));
                                     finish();
                                 } else {
-                                    Toast.makeText(getApplicationContext(), "E-mail or password is wrong", Toast.LENGTH_SHORT).show();
+                                    Toast.makeText(getApplicationContext(), "This Account has not been registered", Toast.LENGTH_SHORT).show();
                                 }
                             }
                         });
