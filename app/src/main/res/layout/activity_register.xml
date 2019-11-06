@@ -13,7 +13,12 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="160dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="sans-serif-condensed"
         android:text="register"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/infoTextSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/password" />
@@ -25,7 +30,12 @@
         android:layout_marginStart="96dp"
         android:layout_marginEnd="96dp"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="Email Address"
         android:inputType="textEmailAddress"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorPrimaryDark"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
@@ -37,7 +47,11 @@
         android:layout_marginStart="96dp"
         android:layout_marginEnd="96dp"
         android:ems="10"
+        android:fontFamily="sans-serif-condensed"
+        android:hint="Password"
         android:inputType="textPassword"
+        android:textColor="@color/colorAccent"
+        android:textColorHint="@color/colorPrimaryDark"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView13" />
@@ -49,7 +63,12 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="160dp"
+        android:background="@drawable/custom_button"
+        android:fontFamily="sans-serif-condensed"
         android:text="login"
+        android:textColor="@android:color/white"
+        android:textSize="@dimen/infoTextSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/regButton" />
@@ -59,13 +78,16 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="160dp"
-        android:layout_marginTop="150dp"
+        android:layout_marginTop="24dp"
         android:layout_marginEnd="160dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="Email:"
-        android:textSize="@dimen/infoTextSize"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/subTitleTextSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toBottomOf="@+id/textView18" />
 
     <TextView
         android:id="@+id/textView13"
@@ -74,10 +96,47 @@
         android:layout_marginStart="160dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="160dp"
+        android:fontFamily="sans-serif-condensed"
         android:text="Password:"
-        android:textSize="@dimen/infoTextSize"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/subTitleTextSize"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/email" />
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_button"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@drawable/custom_button"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView18"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="36dp"
+        android:layout_marginEnd="16dp"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Log In:"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="@dimen/titleTextSize"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

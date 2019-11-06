@@ -36,6 +36,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         final TextView pointstv = (TextView) findViewById(R.id.textView7);
+        final TextView ranktv = (TextView) findViewById(R.id.textView3);
+        final TextView nextrank = (TextView) findViewById(R.id.textView5);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("users").child(uid).addListenerForSingleValueEvent(new ValueEventListener() {
@@ -44,6 +46,27 @@ public class MainActivity extends AppCompatActivity {
                 User testuser = dataSnapshot.getValue(User.class);
                 currentPoints = testuser.getPoints();
                 pointstv.setText("Total Points: " + currentPoints +" points");
+
+                if(currentPoints <= 10){
+                    ranktv.setText("Unranked");
+                    nextrank.setText("Next Rank in: "+(10 - currentPoints)+" points");
+                }
+
+                if(currentPoints > 10 && currentPoints <= 70){
+                    ranktv.setText("Thespian");
+                    nextrank.setText("Next Rank in: "+(70 - currentPoints)+" points");
+                }
+
+                if(currentPoints > 70 && currentPoints <= 120){
+                    ranktv.setText("Honors Thespian");
+                    nextrank.setText("Next Rank in: "+(120 - currentPoints)+" points");
+                }
+
+                if(currentPoints > 120 && currentPoints <= 180){
+                    ranktv.setText("National Honors Thespian");
+                    nextrank.setText("Next Rank in: "+(180-currentPoints)+" points");
+                }
+
             }
 
             @Override
